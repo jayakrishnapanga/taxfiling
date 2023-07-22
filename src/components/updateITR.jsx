@@ -67,7 +67,7 @@ const ITRupdate = () => {
 
     try {
       console.log(formData)
-      const response = await axios.put(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/${submissionId}`, formData);
+      const response = await axios.put(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/${submissionId}`, formData);
       console.log(response.data);
         
       console.log(response.message)

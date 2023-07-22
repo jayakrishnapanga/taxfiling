@@ -48,7 +48,7 @@ const Aadhar= () => {
   
       try {
         console.log(formData)
-        const delteresponse = await axios.delete(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/aadhar/${submissionId}`);
+        const delteresponse = await axios.delete(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/aadhar/${submissionId}`);
 
 
         console.log(delteresponse)
@@ -56,7 +56,7 @@ const Aadhar= () => {
         let response
         if(delteresponse.status===200)
         {
-            response = await axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/aadhar', formData);
+            response = await axios.post('https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/aadhar', formData);
         }
         
         console.log(response.data);

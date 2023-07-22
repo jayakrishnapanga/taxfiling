@@ -23,7 +23,7 @@ const Submissiond = () => {
 
   async function fetchUserFiles(userId) {
     try {
-      const response = await axios.get(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/files/${userId}`);
+      const response = await axios.get(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/files/${userId}`);
       const files = response.data.file;
       const groupedFiles = groupFilesBySubmissionId(files);
       setGroupedFiles(groupedFiles);
@@ -48,7 +48,7 @@ const Submissiond = () => {
 
   async function handleDownload(id, filename) {
     try {
-      const response = await axios.get(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/download/${id}`, {
+      const response = await axios.get(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/download/${id}`, {
         responseType: 'blob',
       });
 
@@ -115,7 +115,7 @@ const Submissiond = () => {
 
   async function handleDelete(submissionId) {
     try {
-      const response = await axios.delete(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/submission/${submissionId}`);
+      const response = await axios.delete(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/submission/${submissionId}`);
       console.log('this is from handle delete');
       console.log(response);
     

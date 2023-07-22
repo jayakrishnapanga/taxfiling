@@ -75,7 +75,7 @@ const ITR = () => {
 
     try {
       console.log(formData)
-      const response = axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files', formData);
+      const response = axios.post('https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files', formData);
      
       console.log(response.data);
      

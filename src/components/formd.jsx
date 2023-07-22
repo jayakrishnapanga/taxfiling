@@ -56,7 +56,7 @@ const Formd= () => {
   
       try {
         console.log(formData)
-        const delteresponse = await axios.delete(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/formd/${submissionId}`);
+        const delteresponse = await axios.delete(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/formd/${submissionId}`);
 
 
         console.log(delteresponse)
@@ -64,7 +64,7 @@ const Formd= () => {
         let response
         if(delteresponse.status===200)
         {
-            response = await axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/formd', formData);
+            response = await axios.post('https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/formd', formData);
         }
         
         console.log(response.data);

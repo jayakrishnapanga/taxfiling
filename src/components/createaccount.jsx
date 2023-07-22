@@ -34,7 +34,7 @@ const CreateAccountForm = () => {
       
       const handleSubmit = async (values) => {
         try {
-          const response = await axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user', values);
+          const response = await axios.post('https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user', values);
           console.log(response);
           if(response.status === 201){
             setErrorMessage('')
