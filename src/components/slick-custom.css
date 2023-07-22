@@ -1,0 +1,23 @@
+/* slick-custom.css */
+
+/* Custom styles for dots */
+/* .slick-dots {
+    /* Your custom styles here */
+   */
+  
+  /* Custom styles for arrows */
+  /* .slick-prev,
+  .slick-next {
+    background-color: black !important;
+   
+    /* Your custom styles here */
+  */
+  
+
+.carousel-container .slick-prev,
+.carousel-container .slick-next {
+  background-color:blue; /* Now the styles should take effect */
+  /* Your other custom styles here */
+}
+  /* If you need to override any other styles, inspect the carousel elements and use their class names */
+  

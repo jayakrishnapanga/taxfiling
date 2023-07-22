@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +10,169 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Example CSS styles for the dropdown */
+.dropdown {
+  position: relative;
+  margin-left: 20px;
+  padding-left: 20px;
+  margin-top: 10px;
+  
+
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdown-content ul {
+  list-style: none;
+  margin: 0;
+  padding-right: 10px;
+}
+
+.dropdown-content li {
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+/* .dropdown-content li:hover {
+  background-color: coral;
+} */
+
+
+.dropdown-content li.my-submissions-link:hover {
+  background-color: coral;
+}
+
+
+
+
+
+/* Add vendor prefixes as needed for wider browser support */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+.shimmer-loader {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+  width: 100%;
+  height: 100px; /* Adjust the height as needed */
+  border-radius: 8px;
+}
+
+
+
+
+
+.password-input {
+  position: relative;
+}
+
+.password-input input[type="checkbox"] {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-input label {
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+/* 
+.background-image-div {
+  background-image: url('https://economictimes.indiatimes.com/thumb/msid-86931832,width-640,resizemode-4,imgsize-26242/9-documents-you-need-to-file-tax-return.jpg');
+  background-size: contain; 
+  background-position: center;  
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5)!important;
+}  */
+
+ /* .background-image-div {
+  position: relative;
+}
+
+.background-image-div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://economictimes.indiatimes.com/thumb/msid-86931832,width-640,resizemode-4,imgsize-26242/9-documents-you-need-to-file-tax-return.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; 
+ z-index: 0; 
+} */
+
+
+/* footercss */
+
+.footer {
+  background-color: rgb(62, 62, 62) ;
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+.contact-card {
+  background-color: white;
+  padding: 10px;
+  padding-bottom: 10;
+  margin-bottom: 20px;
+}
+
+.contact-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.contact-details {
+  padding: 10px;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+
+
+
+
+
+
+
+
+/* download styles */
+.custom-purple-icon {
+  color: purple;
 }
