@@ -26,10 +26,10 @@ const Submissiond = () => {
       const files = response.data.file;
       const groupedFiles = groupFilesBySubmissionId(files);
       setGroupedFiles(groupedFiles);
-      setLoading(false); // Data fetched, so set loading to false
+      setLoading(false); 
     } catch (error) {
       console.error('Error fetching user files:', error);
-      setLoading(false); // In case of an error, set loading to false
+      setLoading(false); 
     }
   }
 
@@ -92,7 +92,7 @@ const Submissiond = () => {
   }
 
   async function handleUpdateFormD(submissionId) {
-    // Implement the update logic for Form D file
+   
     console.log('Updating Form D for submission:', submissionId)
     navigate(`/formdupdate?submissionId=${submissionId}`);
   }
@@ -102,14 +102,12 @@ const Submissiond = () => {
     setShowDeleteModal(true);
   };
 
-  // Function to handle the actual deletion after confirmation
   const handleConfirmDelete = () => {
     setShowDeleteModal(false);
     handleDelete(deletionSubmissionId)
     
   };
 
-  // Function to handle cancellation of deletion
   const handleCancelDelete = () => {
     setShowDeleteModal(false);
   };

@@ -1,18 +1,14 @@
 import React from "react";
-// import Navbar from "./navbar";
+
 
 import { useNavigate } from "react-router-dom";
 import Carousel from "./Carousel";
-// import DropDown from "./dropdown";
-// // import BenefitsOfFilingITR from "./benfitsitr";
-// import { Link } from "react-router-dom";
-// import { useLocation } from 'react-router-dom';
+
 import UserNav from "./usernav";
 import Footer from "./footer";
 const UserInterface=()=>{
 
 
-// const token = localStorage.getItem('token');
  const username=localStorage.getItem('name')
     
     const navigate=useNavigate()
@@ -100,9 +96,7 @@ const UserInterface=()=>{
                        <button className="border  bg-purple-500 hover:bg-purple-400 ml-40 p-2 mb-4 content-center rounded-md  text-white"   onClick={handleITR}>
                        Click here tofile ITR
                     </button>
-                        {/* <div>
-                      <Carousel/>
-                      </div> */}
+                       
                       <Carousel/>
    
                 </div>
@@ -110,7 +104,7 @@ const UserInterface=()=>{
         
 </div>
 <Footer/>
-{/* <BenefitsOfFilingITR/> */}
+
                 </>
         
        

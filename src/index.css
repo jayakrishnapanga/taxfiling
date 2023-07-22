@@ -1,23 +1,11 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 
-/* Example CSS styles for the dropdown */
+
 .dropdown {
   position: relative;
   margin-left: 20px;
@@ -51,9 +39,6 @@ code {
   padding-right: 10px;
 }
 
-/* .dropdown-content li:hover {
-  background-color: coral;
-} */
 
 
 .dropdown-content li.my-submissions-link:hover {
@@ -64,7 +49,7 @@ code {
 
 
 
-/* Add vendor prefixes as needed for wider browser support */
+
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -79,7 +64,7 @@ code {
   background-size: 200px 100%;
   animation: shimmer 1.5s infinite;
   width: 100%;
-  height: 100px; /* Adjust the height as needed */
+  height: 100px; 
   border-radius: 8px;
 }
 
@@ -106,36 +91,7 @@ code {
   padding-left: 5px;
 }
 
-/* 
-.background-image-div {
-  background-image: url('https://economictimes.indiatimes.com/thumb/msid-86931832,width-640,resizemode-4,imgsize-26242/9-documents-you-need-to-file-tax-return.jpg');
-  background-size: contain; 
-  background-position: center;  
-  background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.5)!important;
-}  */
 
- /* .background-image-div {
-  position: relative;
-}
-
-.background-image-div::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://economictimes.indiatimes.com/thumb/msid-86931832,width-640,resizemode-4,imgsize-26242/9-documents-you-need-to-file-tax-return.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5; 
- z-index: 0; 
-} */
-
-
-/* footercss */
 
 .footer {
   background-color: rgb(62, 62, 62) ;
@@ -165,14 +121,6 @@ code {
   margin-top: 0;
 }
 
-
-
-
-
-
-
-
-/* download styles */
 .custom-purple-icon {
   color: purple;
 }

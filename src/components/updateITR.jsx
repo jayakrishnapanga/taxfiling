@@ -33,13 +33,12 @@ const ITRupdate = () => {
       
     };
     
-    // Helper function to map filenames based on labels
     const getModifiedFileName = (file, label) => {
       const extension = file.name.split('.').pop();
       return `${label}.${extension}`;
     };
 
-    // Check the size of each file before appending to formData
+   
     if (aadharCardFile && aadharCardFile.size > 5 * 1024 * 1024) {
       console.error('Aadhar Card size exceeds 5MB');
       return;
@@ -71,9 +70,6 @@ const ITRupdate = () => {
       const response = await axios.put(`http://localhost:3000/submit-files/${submissionId}`, formData);
       console.log(response.data);
         
-      // setSuccessMessage('You succesfully uploaded documents  successfully.');
-      //           setTimeout(clearSuccessMessage, 2000);
-      // console.log(response.message=="Files submitted successfully")
       console.log(response.message)
       console.log(response.status)
       if(response.status===200)
@@ -83,7 +79,7 @@ const ITRupdate = () => {
       
     } catch (error) {
       console.error(error);
-      // Handle error if the request fails
+     
     }
   };
 
@@ -91,16 +87,11 @@ const ITRupdate = () => {
 
   return (
     <>
-      {/* Your navigation component (UserNav) here */}
       <UserNav />
     
       <form onSubmit={handleSubmit}>
         <div className="grid justify-center">
-        {/* <div className="flex justify-between mb-4">
-                    <h1 className="mt-20">User Profile</h1>
-                    {successMessage && <div className="text-green-500 mt-20">{successMessage}</div>}
-                      
-                    </div> */}
+      
           <div className="mb-4  mt-20">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-lime-500" htmlFor="aadharCard">
               Aadhar Card:

@@ -15,16 +15,10 @@ const Submissions = () => {
 
   const location = useLocation();
   
-  const clearSuccessMessage = () => {
-    setSuccessMessage('');
-    navigate('/user')
-    
-    
-  };
+ 
 
 
 
-  // const date = new Date(file.uploadDate);
   
   function formatDate(date) {
         const day = date.getDate();
