@@ -1,18 +1,13 @@
 import React from "react";
 import logo from "../images/logo.png"
-import Navbar from "./navbar";
-import { useState } from "react";
+
 import Login from "./login";
-import RegistrationForm from "./registration";
+
 import Modal from 'react-modal';
 import ReactModal from "react-modal";
 import CreateAccountForm from "./createaccount";
 import Footer from "./footer";
-// import ReactDOM from 'react-dom/client';
-// import {
-//     createBrowserRouter,
-//     RouterProvider,
-//   } from "react-router-dom";
+
 ReactModal.setAppElement('#root');
 
 const customStyles = {

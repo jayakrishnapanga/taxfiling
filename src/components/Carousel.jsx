@@ -1,9 +1,6 @@
 // import React, { useState } from "react";
 // import { CarouselItem } from "./CarouselItem";
 
-import ex2 from "../images/example2.png"
-import ex1 from "../images/example1.svg"
-import ex3 from "../images/example3.png"
 import formc from "../images/form.png"
 import form2 from "../images/form2.png"
 

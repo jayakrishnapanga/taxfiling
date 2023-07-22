@@ -17,7 +17,7 @@ const Submission = () => {
 
   useEffect(() => {
     fetchUserFiles(userId);
-  }, []);
+  }, [userId]);
 
   async function fetchUserFiles(userId) {
     try {

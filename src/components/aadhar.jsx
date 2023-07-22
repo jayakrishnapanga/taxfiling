@@ -12,11 +12,11 @@ const Aadhar= () => {
     const searchParams = new URLSearchParams(location.search);
     const submissionId = searchParams.get('submissionId');
     const [successMessage,setSuccessMessage]=useState('')
-    const clearSuccessMessage = () => {
-      setSuccessMessage('');
-      navigate('/userprofile')
+    // const clearSuccessMessage = () => {
+    //   setSuccessMessage('');
+    //   navigate('/userprofile')
       
-    };
+    // };
 
     const handleSubmit = async (event) => {
       event.preventDefault();

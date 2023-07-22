@@ -1,8 +1,8 @@
 
 import React from "react";
-import { useEffect,useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik,  } from 'formik';
 import * as Yup from 'yup';
 import Login from "./login";
 const CreateAccountForm = () => {
@@ -10,9 +10,6 @@ const CreateAccountForm = () => {
       const[ErrorMessage,setErrorMessage]=useState('')
       const [signUpSuccess, setSignUpSuccess] = useState(false);
     
-      const handleCreateAccountClick = () => {
-        // setShowCreateAccount(true);
-      };
     
       const createAccountInitialValues = {
         email: '',

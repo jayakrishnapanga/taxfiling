@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 
 
 const Navbar=(user)=>{
-      
-    //  const[User, setUser]=useState(true)
+
 
     return(
         <>

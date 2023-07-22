@@ -5,16 +5,16 @@ import { useState } from "react";
 
 import { useFormik } from 'formik';
 import axios from "axios";
-import UserInterface from "./userinterface";
+
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+
 
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
  
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+ 
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
   };
