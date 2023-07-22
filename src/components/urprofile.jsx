@@ -12,7 +12,7 @@ const [response,setResponse]=useState({})
     useEffect(() => {
         async function fetchData() {
           try {
-            const  res = await axios.get(`http://localhost:3000/user/${localStorage.getItem('id')}`);
+            const  res = await axios.get(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/${localStorage.getItem('id')}`);
             console.log(res);
             console.log(res.data)
             setResponse(res)
@@ -36,7 +36,20 @@ const [response,setResponse]=useState({})
         <UserNav/>
               <div>
 
-                {loading?(<div>loading...</div>
+                {loading?(
+                  <>
+                  {/* animate-pulse */}
+                 <div className="pt-32 items-center">
+                   <div className="max-w-2xl  items-center ml-96 p-6 bg-white border border-gray-200 rounded-lg shadow-lg dark:border-gray-700 animate-pulse ">
+                   <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mt-4 mb-2" />
+                   <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mt-2 mb-2" />
+                   <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-2/3 mt-2 mb-2" />
+                   <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mt-2 mb-2" />
+                   <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mt-2 mb-4" />
+                 </div>
+                 </div>
+                 </>
+
                     ):(
 
                       <>

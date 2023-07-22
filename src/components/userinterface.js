@@ -98,12 +98,17 @@ const UserInterface=()=>{
                     </button>
                        
                       <Carousel/>
+                      <div className="max-h-9 max-w-md mt-16 pl-2 pt-20 ml-4"> 
+                      <img  alt="taximages" className="" src="https://blog.saginfotech.com/wp-content/uploads/2023/04/income-tax-return-filing-guide.jpg"></img>
+                      </div>
    
                 </div>
        
         
 </div>
-<Footer/>
+              <div className="mt-28">
+              <Footer/>
+              </div>
 
                 </>
         

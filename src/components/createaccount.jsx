@@ -9,6 +9,7 @@ const CreateAccountForm = () => {
  
       const[ErrorMessage,setErrorMessage]=useState('')
       const [signUpSuccess, setSignUpSuccess] = useState(false);
+      const[login,setLogin]=useState(false);
     
     
       const createAccountInitialValues = {
@@ -33,10 +34,11 @@ const CreateAccountForm = () => {
       
       const handleSubmit = async (values) => {
         try {
-          const response = await axios.post('http://localhost:3000/user', values);
+          const response = await axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user', values);
           console.log(response);
           if(response.status === 201){
             setErrorMessage('')
+            setLogin(true)
             setSignUpSuccess(true);
             console.log("this is after the fetch")
             console.log(signUpSuccess)
@@ -61,7 +63,8 @@ const CreateAccountForm = () => {
         <div className="container w-auto">
           <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
             <div className="flex justify-between mb-4">
-              <h1>Registration</h1>
+
+              {login?(<h1 className="text-center ml-20 pb-5 pl-10 text-4xl">Login</h1>):<h1 className="text-center ml-20 pb-5 pl-10 text-3xl"> Registration</h1>}
               {ErrorMessage && <div className="text-red-700">{ErrorMessage}</div>}
             </div>
     

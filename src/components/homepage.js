@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import ReactModal from "react-modal";
 import CreateAccountForm from "./createaccount";
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 
 ReactModal.setAppElement('#root');
 
@@ -33,6 +34,12 @@ const HomePage=()=>{
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalContent, setModalContent] = React.useState(null);
   const[value,setValue]=React.useState("");
+
+
+
+  const handleHomeClick = () => {
+    window.location.reload();
+  };
 
   console.log(value)
   function openModal(action) {
@@ -67,7 +74,14 @@ const HomePage=()=>{
           <ul className="flex  ">
           
           
-            <li className="p-5 text-white">Home</li>
+
+          {/* <li className="p-5 mt-1 text-white" onClick={handleHomeClick}>Home</li>
+           */}
+      
+      <a href="#top">
+  <li className="p-5 mt-1 text-white">Home</li>
+</a>
+
 
             <button className="search-btn"
                 onClick= {()=>{
@@ -175,7 +189,10 @@ const HomePage=()=>{
       <p className="pl-52">Concerns, so you can focus on the job at</p>
       <p className="pl-96">hand."</p> */}
     {/* </div>  */}
-<Footer/>
+   <div className="mt-10">
+
+   <Footer/>
+   </div>
 
 </>
 

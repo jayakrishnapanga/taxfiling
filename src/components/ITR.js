@@ -10,13 +10,17 @@ const ITR = () => {
   const [aadharCardFile, setAadharCardFile] = useState(null);
   const [panCardFile, setPanCardFile] = useState(null);
   const [formCFile, setFormCFile] = useState(null);
-  const [formDFile, setFormDFile] = useState(null);
+  const [payslipFile, setpayslipFile] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsUploading(true); 
     const userId = localStorage.getItem('id');
     const formData = new FormData();
+
 
     // const clearSuccessMessage = () => {
    
@@ -25,41 +29,54 @@ const ITR = () => {
     // };
     
     // Helper function to map filenames based on labels
+    // const getModifiedFileName = (file, label) => {
+    //   const extension = file.name.split('.').pop();
+    //   return `${label}.${extension}`;
+    // };
     const getModifiedFileName = (file, label) => {
       const extension = file.name.split('.').pop();
-      return `${label}.${extension}`;
+      if (label === "Any one payslip of last year (1st April 2022 to 31st March 2023)") {
+        return `payslip.${extension}`;
+      } else {
+        return `${label}.${extension}`;
+      }
     };
 
     // Check the size of each file before appending to formData
-    if (aadharCardFile && aadharCardFile.size > 5 * 1024 * 1024) {
-      console.error('Aadhar Card size exceeds 5MB');
-      return;
-    }
+    const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1 MB
 
-    if (panCardFile && panCardFile.size > 5 * 1024 * 1024) {
-      console.error('PAN Card size exceeds 5MB');
+    if (aadharCardFile && aadharCardFile.size > MAX_FILE_SIZE) {
+      setErrorMessage('Aadhar Card size exceeds 1 MB');
       return;
     }
+    
+    if (panCardFile && panCardFile.size > MAX_FILE_SIZE) {
+      setErrorMessage('PAN Card size exceeds 1 MB');
+      return;
+    }
+    
+    if (formCFile && formCFile.size > MAX_FILE_SIZE) {
+      setErrorMessage('Form C size exceeds 1 MB');
+      return;
+    }
+    
+    if (payslipFile && payslipFile.size > MAX_FILE_SIZE) {
+      setErrorMessage('Playslip File size exceeds 1 MB');
+      return;
+    }
+    
 
-    if (formCFile && formCFile.size > 5 * 1024 * 1024) {
-      console.error('Form C size exceeds 5MB');
-      return;
-    }
-
-    if (formDFile && formDFile.size > 5 * 1024 * 1024) {
-      console.error('Form D size exceeds 5MB');
-      return;
-    }
 
     formData.append('aadharCard', aadharCardFile, getModifiedFileName(aadharCardFile, 'aadharcard'));
     formData.append('panCard', panCardFile, getModifiedFileName(panCardFile, 'pancard'));
     formData.append('formC', formCFile, getModifiedFileName(formCFile, 'formc'));
-    formData.append('formD', formDFile, getModifiedFileName(formDFile, 'formd'));
+    formData.append('payslip', payslipFile, getModifiedFileName(payslipFile, 'payslip'));
     formData.append('userId', userId);
 
     try {
       console.log(formData)
-      const response = await axios.post('http://localhost:3000/submit-files', formData);
+      const response = axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files', formData);
+     
       console.log(response.data);
      
       console.log(response.message)
@@ -89,12 +106,23 @@ const ITR = () => {
                     {successMessage && <div className="text-green-500 mt-20">{successMessage}</div>}
                       
                     </div> */}
-          <div className="mb-4  mt-20">
+                    
+          <div className="mb-4  mt-28">
+
+                    {errorMessage && (
+                  <div className="text-red-500 mt-2">{errorMessage}</div>
+                )}
+
+         {isUploading && (
+            <p className="text-center mt-4">Please wait, we are uploading your documents...</p>
+          )}
+
+            
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-lime-500" htmlFor="aadharCard">
               Aadhar Card:
             </label>
             <input
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-100 dark:text-black focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
               type="file"
               name="aadharCard"
               accept=".pdf,.png,"
@@ -107,7 +135,7 @@ const ITR = () => {
               PAN Card:
             </label>
             <input
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-100 dark:text-black  focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
               type="file"
               name="panCard"
               accept=".pdf,.png"
@@ -120,7 +148,7 @@ const ITR = () => {
               Form C:
             </label>
             <input
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-100 dark:text-black  focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
               type="file"
               name="formC"
               accept=".pdf,.png"
@@ -129,16 +157,16 @@ const ITR = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-lime-500" htmlFor="formD">
-              Form D:
+            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-lime-500" htmlFor="payslip">
+            Any one payslip of last year (1st April 2022 to 31 march 2023):
             </label>
             <input
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 ddark:bg-gray-100 dark:text-black  focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
               type="file"
-              name="formD"
+              name="payslip"
               accept=".pdf,.png"
               required
-              onChange={(event) => setFormDFile(event.target.files[0])}
+              onChange={(event) => setpayslipFile(event.target.files[0])}
             />
           </div>
 
@@ -149,6 +177,7 @@ const ITR = () => {
         >
           Submit
         </button>
+        <p className="text-center mt-4">please upload all the documents less than or equal to 1MB</p>
         </div>
        
       </form>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import UserNav from "./usernav";
 import ShimmerUI from "./shimmer";
+import Footer from "./footer";
 const Profile=()=>{
   
   const [response, setResponse] = useState(null);
@@ -31,7 +32,7 @@ const Profile=()=>{
     useEffect(() => {
         async function fetchData() {
           try {
-            const  response = await axios.get(`http://localhost:3000/user/${localStorage.getItem('id')}`);
+            const  response = await axios.get(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/${localStorage.getItem('id')}`);
             console.log(response);
             setResponse(response.data);
             setLoading(false);
@@ -84,7 +85,7 @@ const Profile=()=>{
             
             const handleSubmit = async (values) => {
               try {
-                const response = await axios.put(`http://localhost:3000/user/profile/${localStorage.getItem('id')}`, values);
+                const response = await axios.put(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/profile/${localStorage.getItem('id')}`, values);
                 console.log(response);
                 setSuccessMessage('Your profile is updated successfully.');
                 setTimeout(clearSuccessMessage, 1000);
@@ -105,10 +106,14 @@ const Profile=()=>{
             return (
 <>
               <UserNav/>
-                <div className="container w-auto">
-                  <div className="max-w-md mx-auto  bg-white pt-24 p-7 rounded-lg shadow-md">
+                
+
+
+                  <div className="pt-32">
+                  <div className="container w-auto">
+                  <div className="max-w-md mx-auto  bg-white  p-7 rounded-lg shadow-md">
                     <div className="flex justify-between mb-4">
-                    <h1>User Profile</h1>
+                    <h1>Your Profile</h1>
                     {successMessage && <div className="text-green-500">{successMessage}</div>}
                       
                     </div>
@@ -127,7 +132,7 @@ const Profile=()=>{
                       <form className="max-w-sm" onSubmit={formik.handleSubmit}>
                         <div className="mb-4">
                           <label
-                            className="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
+                            className="block text-gray-500 font-bold mb-1 md:mb-0 pr-2"
                             htmlFor="inline-email"
                           >
                             Email
@@ -253,8 +258,13 @@ const Profile=()=>{
                     )}
                   </div>
                 </div>
+                       </div>
+                <div className='pt-96'>
 
-                </>
+                      <Footer/>
+                      </div>
+
+                              </>
               );
               
 };

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import UserNav from './usernav';
 import { Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Footer from './footer';
 
 const Submissiond = () => {
   const userId = localStorage.getItem('id');
@@ -22,7 +23,7 @@ const Submissiond = () => {
 
   async function fetchUserFiles(userId) {
     try {
-      const response = await axios.get(`http://localhost:3000/files/${userId}`);
+      const response = await axios.get(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/files/${userId}`);
       const files = response.data.file;
       const groupedFiles = groupFilesBySubmissionId(files);
       setGroupedFiles(groupedFiles);
@@ -47,7 +48,7 @@ const Submissiond = () => {
 
   async function handleDownload(id, filename) {
     try {
-      const response = await axios.get(`http://localhost:3000/download/${id}`, {
+      const response = await axios.get(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/download/${id}`, {
         responseType: 'blob',
       });
 
@@ -114,7 +115,7 @@ const Submissiond = () => {
 
   async function handleDelete(submissionId) {
     try {
-      const response = await axios.delete(`http://localhost:3000/user/submission/${submissionId}`);
+      const response = await axios.delete(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/submission/${submissionId}`);
       console.log('this is from handle delete');
       console.log(response);
     
@@ -134,14 +135,22 @@ const Submissiond = () => {
       <UserNav />
       <div>
         {loading ? (
-          <p className="pt-20 text-center">Loading...</p>
+             <div className="pt-32 items-center">
+             <div className="w-full flex justify-evenly p-6 bg-white border border-gray-200 rounded-lg shadow-lg dark:border-gray-700 animate-pulse ">
+             <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mt-2 mr-2 mb-2" />
+             <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mt-2  mr-2  mb-2" />
+             <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mt-2 mr-2 mb-2" />
+             <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mt-2 mr-2 mb-2" />
+             <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mt-2 mr-2 mb-4" />
+           </div>
+           </div>
         ) : (
           <div>
             <h1 className="pt-20 text-2xl font-bold">Your Submissions</h1>
             {successMessage && <div className="text-green-500">{successMessage}</div>}
             {Object.keys(groupedFiles).length === 0 ? (
                <>
-                <p className="text-center mt-8 text-4xl">You haven't yet done any submissions</p>
+                <p className="text-center mt-8 text-4xl">You haven't made any submissions yet</p>
                <Link to="/user/itr"> <p className='text-purple-900 mt-10 text-center font-mono text-4xl'> Lets click here to FileITR or click on File MY ITR</p></Link>
                 </>
               ) : (
@@ -153,7 +162,7 @@ const Submissiond = () => {
                   <th className="px-4 py-2 text-left">Aadhar Card</th>
                   <th className="px-4 py-2 text-left">PAN Card</th>
                   <th className="px-4 py-2 text-left">Form C</th>
-                  <th className="px-4 py-2 text-left">Form D</th>
+                  <th className="px-4 py-2 text-left">Payslip</th>
                   <th className="px-4 py-2 text-left">Actions</th>
                 </tr>
               </thead>
@@ -170,7 +179,7 @@ const Submissiond = () => {
                     s.filename.includes('formc')
                   );
                   const formDSubmission = files.find((s) =>
-                    s.filename.includes('formd')
+                    s.filename.includes('payslip')
                   );
   
                   return (
@@ -309,6 +318,10 @@ const Submissiond = () => {
           </div>
         </div>
       )}
+      <div className='pt-96'>
+
+            <Footer/>
+            </div>
     </>
   );
   

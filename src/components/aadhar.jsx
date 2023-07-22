@@ -12,6 +12,7 @@ const Aadhar= () => {
     const searchParams = new URLSearchParams(location.search);
     const submissionId = searchParams.get('submissionId');
     const [successMessage,setSuccessMessage]=useState('')
+    const [errorMessage, setErrorMessage] = useState(null);
     // const clearSuccessMessage = () => {
     //   setSuccessMessage('');
     //   navigate('/userprofile')
@@ -35,8 +36,8 @@ const Aadhar= () => {
       };
   
       // Check the size of each file before appending to formData
-      if (aadharCardFile && aadharCardFile.size > 5 * 1024 * 1024) {
-        console.error('Aadhar Card size exceeds 5MB');
+      if (aadharCardFile && aadharCardFile.size > 1 * 1024 * 1024) {
+        setErrorMessage('aadharcard File size exceeds 1 MB');
         return;
       }
 
@@ -47,7 +48,7 @@ const Aadhar= () => {
   
       try {
         console.log(formData)
-        const delteresponse = await axios.delete(`http://localhost:3000/user/aadhar/${submissionId}`);
+        const delteresponse = await axios.delete(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/aadhar/${submissionId}`);
 
 
         console.log(delteresponse)
@@ -55,7 +56,7 @@ const Aadhar= () => {
         let response
         if(delteresponse.status===200)
         {
-            response = await axios.post('http://localhost:3000/submit-files/aadhar', formData);
+            response = await axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/aadhar', formData);
         }
         
         console.log(response.data);
@@ -91,12 +92,16 @@ const Aadhar= () => {
                         
                       </div> */}
             <div className="mb-4  mt-28">
+            {errorMessage && (
+                  <div className="text-red-500 mt-2">{errorMessage}</div>
+                )}
+            
             {successMessage && <div className="text-green-500">{successMessage}</div>}
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-lime-500" htmlFor="aadharCard">
                 Aadhar Card:
               </label>
               <input
-                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-100 dark:text-black  focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
                 type="file"
                 name="aadharCard"
                 accept=".pdf,.png,"

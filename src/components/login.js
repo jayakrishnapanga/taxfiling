@@ -29,8 +29,8 @@ const Login = () => {
     onSubmit: async (values) => {
       console.log(values);
       try {
-        const response = await axios.post('http://localhost:3000/user/login', values);
-        console.log(response);
+        const response = await axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/login', values);
+        console.log(response);             
         console.log(response.status);
 
         if (response.status === 201) {

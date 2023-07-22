@@ -7,10 +7,11 @@ import { useNavigate,useLocation } from "react-router-dom";
 
 const Formd= () => {
    
-    const [formDFile, setFormDFile] = useState(null);
+    const [payslipFile, setpayslipFile] = useState(null);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const submissionId = searchParams.get('submissionId');
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const [successMessage,setSuccessMessage]=useState('')
     const clearSuccessMessage = () => {
@@ -30,23 +31,32 @@ const Formd= () => {
         
       // };
       
+      // const getModifiedFileName = (file, label) => {
+      //   const extension = file.name.split('.').pop();
+      //   return `${label}.${extension}`;
+      // };
       const getModifiedFileName = (file, label) => {
         const extension = file.name.split('.').pop();
-        return `${label}.${extension}`;
+        if (label === "Any one payslip of last year (1st April 2022 to 31st March 2023)") {
+          return `payslip.${extension}`;
+        } else {
+          return `${label}.${extension}`;
+        }
       };
   
-      if (formDFile && formDFile.size > 5 * 1024 * 1024) {
-        console.error('Form D size exceeds 5MB');
+      if (payslipFile && payslipFile.size > 1 * 1024 * 1024) {
+        setErrorMessage('Playslip File size exceeds 1 MB');
         return;
       }
+    
 
-      formData.append('formD', formDFile, getModifiedFileName(formDFile, 'formd'));
+      formData.append('payslip', payslipFile, getModifiedFileName(payslipFile, 'payslip'));
       formData.append('userId', userId);
       formData.append('submissionId',submissionId)
   
       try {
         console.log(formData)
-        const delteresponse = await axios.delete(`http://localhost:3000/user/formd/${submissionId}`);
+        const delteresponse = await axios.delete(`http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/formd/${submissionId}`);
 
 
         console.log(delteresponse)
@@ -54,7 +64,7 @@ const Formd= () => {
         let response
         if(delteresponse.status===200)
         {
-            response = await axios.post('http://localhost:3000/submit-files/formd', formData);
+            response = await axios.post('http://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/submit-files/formd', formData);
         }
         
         console.log(response.data);
@@ -68,7 +78,7 @@ const Formd= () => {
         if(response.status===201)
         {
 
-          setSuccessMessage('Your FormD is updated successfully.');
+          setSuccessMessage('Your payslip file is updated successfully.');
           setTimeout(clearSuccessMessage, 1000);
           // navigate('/success')
         }
@@ -93,19 +103,23 @@ const Formd= () => {
                         {successMessage && <div className="text-green-500 mt-20">{successMessage}</div>}
                           
                         </div> */}
+                        {errorMessage && (
+                  <div className="text-red-500 mt-2">{errorMessage}</div>
+                )}
+            
 
                        <div className="mb-4 mt-28">
                        {successMessage && <div className="text-green-500">{successMessage}</div>}
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-lime-500" htmlFor="formD">
-                            Form D:
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-lime-500" htmlFor="payslip">
+                            Any one payslip of last year (1st April 2022 to 31 march 2023):
                             </label>
                             <input
-                            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
+                            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-100 dark:text-black  focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
                             type="file"
-                            name="formD"
+                            name="payslip"
                             accept=".pdf,.png"
                             required
-                            onChange={(event) => setFormDFile(event.target.files[0])}
+                            onChange={(event) => setpayslipFile(event.target.files[0])}
                             />
                         </div>
                             
