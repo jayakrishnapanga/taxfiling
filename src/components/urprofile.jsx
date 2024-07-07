@@ -12,7 +12,7 @@ const [response,setResponse]=useState({})
     useEffect(() => {
         async function fetchData() {
           try {
-            const  res = await axios.get(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/${localStorage.getItem('id')}`);
+            const  res = await axios.get(`http://localhost:3000/user/${localStorage.getItem('id')}`);
             console.log(res);
             console.log(res.data)
             setResponse(res)

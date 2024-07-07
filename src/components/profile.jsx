@@ -32,7 +32,7 @@ const Profile=()=>{
     useEffect(() => {
         async function fetchData() {
           try {
-            const  response = await axios.get(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/${localStorage.getItem('id')}`);
+            const  response = await axios.get(`http://localhost:3000/user/${localStorage.getItem('id')}`);
             console.log(response);
             setResponse(response.data);
             setLoading(false);
@@ -85,7 +85,7 @@ const Profile=()=>{
             
             const handleSubmit = async (values) => {
               try {
-                const response = await axios.put(`https://jayakrishnanodejs.ap-south-1.elasticbeanstalk.com/user/profile/${localStorage.getItem('id')}`, values);
+                const response = await axios.put(`http://localhost:3000/user/profile/${localStorage.getItem('id')}`, values);
                 console.log(response);
                 setSuccessMessage('Your profile is updated successfully.');
                 setTimeout(clearSuccessMessage, 1000);
